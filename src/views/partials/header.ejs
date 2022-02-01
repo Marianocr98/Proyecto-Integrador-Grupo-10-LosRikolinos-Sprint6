@@ -1,0 +1,123 @@
+<header>
+    <div class="top-header">
+        <!-- imagen logo burger-menu -->
+        <div class="container-burger-cart">
+            <div class="burger-menu">
+                <a><i class="fas fa-bars"></i></a>
+            </div>
+
+            <div class="cuenta-registro">
+
+
+                    <ul class="menu">
+                        <% if (locals.isLogged) { %>
+                            <label for="name-user" class="name-user">
+                                <%= locals.userLogged.fullName %> 
+                            </label>
+                            
+                            <li>
+                                <div class = "container-image-avatar">
+                                    <a href="/login"> <img src="/img/avatars/<%= locals.userLogged.avatar %>" alt="imagen usuario" class="avatarImg" ></a>
+                                </div>
+                            
+                            <ul class="submenu">
+
+                                <%  if (locals.isLogged && locals.userLogged.rol == "admin") { %> 
+                                <li><a href="/profile">Mi Perfil</a> </li> 
+                                <li><a href="/viewCreate">Crear Productos</a></li>
+                                <li><a href="/viewCreate/#ListadoDeProductos">Editar Productos</a></li>
+                                <li><a href="/logout">Cerrar sesión</a> </li>
+                                
+                                <% } else {%> 
+                                    <li><a href="/profile">Mi Perfil</a> </li> 
+                                    <li><a href="/logout">Cerrar sesión</a> </li>
+                                
+                                <% } %> 
+                                
+                            </ul>
+                            </li>
+                        
+                        <% }else{ %> 
+                        <li><a href="/login"><i class="far fa-user-circle"></i></a>
+                            <ul class="submenu">
+
+                                <%  if (locals.isLogged) {%> 
+                                <li><a href="/profile">Mi Perfil</a> </li> 
+                                <li><a href="/logout">Cerrar sesión</a> </li>
+                                <% } else {%> 
+                                <li><a href="/login">Iniciar sesión</a></li>
+                                <li><a href="/register">Registrarse</a></li>
+                                <% } %> 
+                                
+                            </ul>
+                        </li>
+                        <% } %> 
+                    </ul>
+            </div>
+
+            <div class="cart">
+                <a href="/shopping-cart"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+
+        <div class="contenedor-buscador-navbar">
+
+            <nav class="navegacion">
+                <ul class="menu-nav">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/menu">Menu</a>
+                        <ul class="submenu-menu">
+
+                            <% let menu = ['Hamburguesa', 'Pizza', 'Pastas', 'Empanadas', 'Asado', 'Bebidas'];%>
+                            
+                                    <% for (const oneCategory of menu) { %>
+                            <li><a href="/productos/<%= oneCategory %>"> <%= oneCategory %> </a></li>
+                                    <% }  %> 
+                        </ul>
+                    </li>
+                    <li><a href="/productos">Productos</a>
+                    </li>
+                        
+                    </li>
+                    <li><a href="/#Nosotros">Nosotros</a>
+                    <li><a href="#footer">Contacto</a>
+                </ul>
+            </nav>
+
+            <div class="buscador">
+                <form action="/search" method="GET">
+                    <input type="text" name="search" placeholder="Buscar productos">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+
+        <!-- imagen logo  -->
+        <div class="logo">
+            <a href="/"><img src="/img/Logo-Rikolinos.png" alt=""></a>
+        </div>
+
+        <div class="container-user-carrito">
+            <!--User-->
+            <div class="user">
+                <i class="fas fa-user"></i>
+               
+            </div>
+
+            <!-- carrito-->
+            <div class="container-carrito-precio">
+                <div class="container-carrito">
+                    <img src="/img/carrito-de-compras.png" alt="">
+                </div>
+                <div class="container-precio">
+                    <p>$1000000<p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
