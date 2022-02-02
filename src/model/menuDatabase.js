@@ -3,7 +3,7 @@ const path = require('path');
 // Recibo por parámetro la entidad para reutilizarlo
 
 
-const modelController = function (name) {
+const menuController = function (name) {
     // console.log('entre al modelo')
     // console.log(name)
     // console.log(path.resolve(__dirname, '../data/', `${name}.json`))
@@ -70,8 +70,10 @@ const modelController = function (name) {
             return row.id;
         },
 
+        // Elimino el registro en el archivo según un id    
         delete: function (id) {
 
+            // console.log('Elimino :' + id)
             let rows = this.readFile();
             let updatedRows = rows.filter(row => {
                 return row.id != id;
@@ -80,15 +82,28 @@ const modelController = function (name) {
             this.writeFile(updatedRows);
         },
 
-        productsCategory: function(value){
-            
+        searchCategory: function(value){
             let rows = this.readFile();
-
+            // console.log(" --- filtro de home")
+            
             const result = rows.filter(i => i.category.toLowerCase() == value.toLowerCase());
-
+            // console.log(" --- ESTOY ----------------------")
+            // console.log(result);
             return result;
+            //TOLOWERCASE sirve para transformar cuanlquier palabra tanto mayuscula como minuscula sin importar si la palabra este con M o Minuscula
+            //ej: Hamburguesa, si lo busco con h minuscula lo encuentra igual
+        },
+
+        getIsSpecial: function () {
+            let rows = this.readFile();
+            // console.log(" --- filtro de home")
+            
+            const specials = rows.filter(i => i.isSpecial);
+            //console.log(" --- ESTOY ----------------------")
+            // console.log(home)
+            return specials 
         }
     }
 }
 
-module.exports = modelController
+module.exports = menuController;

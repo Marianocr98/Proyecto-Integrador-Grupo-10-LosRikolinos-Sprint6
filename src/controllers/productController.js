@@ -13,9 +13,9 @@ const productController = {
 
     productos: (req,res) => {
 
-        const products = productModel.productos();
+        const productos = productModel.all();
 
-        res.render('./productos/productos' ,{productos:products})
+        res.render('./productos/productos' ,{productos})
     },
 
     viewCreate: (req,res)=>{
@@ -72,7 +72,7 @@ const productController = {
 
     category: (req, res) => {
 
-        const productos = productModel.searchCategory(req.params.categoria);
+        const productos = productModel.productsCategory(req.params.categoria);
 
         res.render('./productos/categorias', {productos})
     },

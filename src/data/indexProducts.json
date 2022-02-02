@@ -1,71 +1,45 @@
 
 [
     {
+        "id": 1,
         "name": "Hamburguesa",
-        "direction": "/productos/Hamburguesa",
-        "image":"/img/hamburguesa2.jpg",
-        "description":"Disfrute de las mejores Hamburgesas",
-        "category": "home"
-    },
-    {
-        "name": "Parrilla",
-        "direction": "/productos/Asado",
-        "image":"/img/carneasada.jpeg",
-        "description":"Especializados en parrilla",
-        "category": "home"
-    },
-    {
-        "name": "Pizza",
-        "direction": "/productos/Pizza",
-        "image":"/img/pizzas.jpeg" ,
-        "description":"Postres unicos y originales",
-        "category": "home"
-    },
-    {
-        "name": "Bebidas",
-        "direction": "/productos/Bebidas",
-        "image":"/img/vino.jpg",
-        "description":"Bebidas de todo tipo",
-        "category": "home"
-    },
-
-
-
-
-    {
-        "id": "Hamburguesa",
         "image": "hamburguesa1.jpg",
         "textoAltenativo": "Menu de Hamburguesas",
-        "category": "menu"
+        "isSpecial": true
     },
     {
-        "id": "Pizza",
+        "id": 2,
+        "name": "Pizza",
         "image": "pizza.jpeg",
         "textoAltenativo": "Seccion de pizzas",
-        "category": "menu"
+        "isSpecial": true
     },
     {
-        "id": "Pastas",
+        "id": 3,
+        "name": "Pastas",
         "image": "ravioles.jpeg",
         "textoAltenativo": "Seccion de Ravioles",
-        "category": "menu"
+        "isSpecial": false
     },
     {
-        "id": "Empanadas",
+        "id": 4,
+        "name": "Empanadas",
         "image": "empanadas.jpeg",
         "textoAltenativo": "Seccion de empanadas",
-        "category": "menu"
+        "isSpecial": false
     },
     {
-        "id": "Asado",
+        "id": 5,
+        "name": "Asado",
         "image": "carneasada.jpeg",
         "textoAltenativo": "Seccion de Asado",
-        "category": "menu"
+        "isSpecial": true
     },
     {
-        "id":"Bebidas",
+        "id": 6,
+        "name":"Bebidas",
         "image": "coctel.jpg",
-        "textoAltenativo": "Seccion de bebidas",
-        "category": "menu"
+        "textoAltenativo": "Seccion de bebnameas",
+        "isSpecial": true
     }
 ]
