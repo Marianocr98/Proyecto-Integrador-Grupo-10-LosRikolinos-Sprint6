@@ -30,11 +30,11 @@
         <section class = "main-section">
             <% categorias.forEach(element => { %>
                 <article class = "article">
-                        <a href="/productos/<%=element.name%>">
+                        <a href="menu/<%=element.name%>">
                             <div class="padre-articulos">
                                 <h3 class = "categorias"><%=element.name%> </h3>
                                 <div class="contenedor-img">
-                                    <img src="/img/<%=element.image%>" alt="<%=element.textoAlternativo %> ">
+                                    <img src="/img/products/<%=element.image%>" alt="<%=element.textoAlternativo %> ">
                                 </div>
                             </a>
                             </div>

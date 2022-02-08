@@ -1,21 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const multer = require('multer');
+const multerUpload = require('../middlewares/multerProduct');
 const productController = require('../controllers/productController')
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../../public/img' ));
-    },
-    filename: (req, file, cb) => {
-        console.log(file);
-        const newFilename = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
-        cb(null, newFilename);
-    }
-});
-
-const upload = multer({ storage: storage });
 
 
 // -----------EN PROCESO------------------------
@@ -26,13 +12,15 @@ router.get('/shopping-cart', productController.shoppingCart);
 // -----------TERMINADOS------------------------
 
 //-- Listado de productos
-router.get('/productos', productController.productos)
+router.get('/products', productController.productos)
 
 // ----RUTA DE LAS CATEGORIAS DE LOS PRODUCTOS---
-router.get('/productos/:categoria', productController.category);
+router.get('/menu/:categoria', productController.category);
 
 //-- Detalle de un producto particular
-router.get('/productDetail/:id', productController.productDetail);
+router.get('/menu/:categoria/:id', productController.productDetail);
+
+router.get('/product/:categoria/:id', productController.productDetail);
 
 // ----RUTA DE LA BARRA DEL BUSCADOR---- 
 router.get('/search', productController.search);
@@ -41,13 +29,13 @@ router.get('/search', productController.search);
 router.get('/viewCreate', productController.viewCreate)
 
 // Acción de creación (a donde se envía el formulario)-check
-router.post('/productos/createProduct', upload.single('imgProductos'), productController.createProduct)
+router.post('/productos/createProduct', multerUpload.single('imgProductos'), productController.createProduct)
 
 //  --------VISTA DEL FORMULARIO DE EDICION- ADMIN--------
 router.get('/productEdition/:id', productController.productEdition);
 
 //  --------EDICION DE UN PRODUCTO--------
-router.put('/productEdition/:id', upload.single('imgProductos'), productController.edit);
+router.put('/productEdition/:id', multerUpload.single('imgProductos'), productController.edit);
 
 //  --------ELIMINACION DE UN PRODUCTO--------
 router.delete('/productDelete/:id', productController.delete);

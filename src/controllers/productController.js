@@ -15,7 +15,7 @@ const productController = {
 
         const productos = productModel.all();
 
-        res.render('./productos/productos' ,{productos})
+        res.render('./products/productos' ,{productos})
     },
 
     viewCreate: (req,res)=>{
@@ -66,15 +66,17 @@ const productController = {
     },
     
     productDetail: (req, res) => {
-        let detalle = productModel.find(req.params.id);
-        res.render('./productos/productDetail', {detail: detalle});
+        const detail = productModel.find(req.params.id);
+
+        res.render('./products/productDetail', {detail});
     },
 
     category: (req, res) => {
 
         const productos = productModel.productsCategory(req.params.categoria);
+        const detail = productModel.find(req.params.id);
 
-        res.render('./productos/categorias', {productos})
+        res.render('./products/categories', {productos, detail})
     },
     search: (req, res) => {
 
@@ -89,7 +91,7 @@ const productController = {
     },
     
     shoppingCart : (req,res)=>{
-        res.render('./productos/shopping-cart');
+        res.render('./products/shopping-cart');
     }, 
 
 }

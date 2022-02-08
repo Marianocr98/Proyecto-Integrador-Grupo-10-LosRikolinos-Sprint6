@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const multer = require('multer');
 const {body} = require('express-validator');
 
 
@@ -33,12 +31,12 @@ router.get('/login', guestMiddleware, userController.login);
 
 //router.post('/save', userController.save);
 
-/* Procesa el registro*/
+// Procesa el registro
 router.post('/register', multerUpFile.single('avatar'), logRegisterMiddleware, validations, userController.processRegister);
 
 router.get('/profile', authMiddleware, userController.profile);
 
-/*Procesar el Login*/
+//Procesar el Login
 
 router.post('/login', userController.processLogin);
 

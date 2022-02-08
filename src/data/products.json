@@ -291,13 +291,5 @@
   "imgDescription": "Heineken",
   "price": 199,
   "category": "Bebidas"
- },
- {
-  "id": "37",
-  "title": "brochett",
-  "description": " comeme ",
-  "price": "550   ",
-  "category": "asado",
-  "image": "imgProductos-1643231745358.jpg"
  }
 ]

@@ -95,14 +95,34 @@
                 </tr>
                 <% listProduct.forEach(element => { %>
                     <tr>
-                        <td class="imagenTd"><a href="/productDetail/<%=element.id %>" class="enlace"><img
-                                    src="/img/<%= element.image %>" alt="<%= element.title %>" class="container-img"> </a></td>
-                        <td class="containerProducts"><a href="/productDetail/<%=element.id %> %> " class="enlace"><%= element.title %> <img src="/img/<%= element.image %>" alt="<%= element.title %>" class="container-img"></a> $<%= element.price %></td>
-                        <td class="nombreTd"><a href="/productDetail/<%=element.id %>" class="enlace"> <%= element.title %></a></td>
-                        <td class="priceTd">$<%= element.price %> </td>
-                        <td><a href="/productEdition/<%= element.id %> "><button class="editar">Editar</button></a></td>
+                        <td class="imagenTd">
+                            <a href="product/<%=element.category%>/<%=element.id %>" class="enlace">
+                                <img src="/img/products/<%= element.image %>" alt="<%= element.title %>" class="container-img">
+                            </a>
+                        </td>
+                        <td class="containerProducts">
+                            <a href="product/<%=element.category%>/<%=element.id %> %> " class="enlace"><%= element.title %> 
+                                <img src="/img/products/<%= element.image %>" alt="<%= element.title %>" class="container-img">
+                            </a>
+                            $<%= element.price %>
+                        </td>
+                        <td class="nombreTd">
+                            <a href="product/<%=element.category%>/<%=element.id %>" class="enlace">
+                                <%= element.title %>
+                            </a>
+                        </td>
+                        <td class="priceTd">
+                            $<%= element.price %> 
+                        </td>
+                        <td>
+                            <a href="/productEdition/<%= element.id %> ">
+                                <button class="editar">Editar</button>
+                            </a>
+                        </td>
                         <form action="/productDelete/<%=element.id%>?_method=DELETE" method="POST">
-                            <td><button class="eliminar">Eliminar</button></td>
+                            <td>
+                                <button class="eliminar">Eliminar</button>
+                            </td>
                         </form>
                     </tr>
                     <% }) %>

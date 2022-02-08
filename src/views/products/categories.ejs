@@ -42,13 +42,13 @@
 
             <% productos.forEach(element => { %>
             <article class="container-productos">
-                    <a href="/productDetail/<%=element.id %>">
+                    <a href="<%=element.category%>/<%=element.id %>">
                         <h4> <%= element.title  %> </h4>
                     </a>
                     <div class="container-img-barrita">
                         <div class="container-img">
-                            <a href="/productDetail/<%=element.id %>">
-                                <img src="/img/<%=element.image %> " alt="<%= element.imgDescription %> ">
+                            <a href="<%=element.category%>/<%=element.id %>">
+                                <img src="/img/products/<%=element.image %> " alt="<%= element.imgDescription %> ">
                             </a>
                             <h2> $<%= element.price %>,00 </h2>
                         </div>
