@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const multerUpload = require('../middlewares/multerProduct');
 const productController = require('../controllers/productController')
-
+const guestMiddleware = require('../middlewares/guestMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 // -----------EN PROCESO------------------------
 router.get('/shopping-cart', productController.shoppingCart);
@@ -26,13 +27,13 @@ router.get('/product/:categoria/:id', productController.productDetail);
 router.get('/search', productController.search);
 
 //  --------VISTA DEL FORMULARIO DE CREACION - ADMIN--------
-router.get('/viewCreate', productController.viewCreate)
+router.get('/viewCreate', guestMiddleware , authMiddleware ,productController.viewCreate)
 
 // Acción de creación (a donde se envía el formulario)-check
-router.post('/productos/createProduct', multerUpload.single('imgProductos'), productController.createProduct)
+router.post('/productos/createProduct',  multerUpload.single('imgProductos'), productController.createProduct)
 
 //  --------VISTA DEL FORMULARIO DE EDICION- ADMIN--------
-router.get('/productEdition/:id', productController.productEdition);
+router.get('/productEdition/:id', guestMiddleware , authMiddleware, productController.productEdition);
 
 //  --------EDICION DE UN PRODUCTO--------
 router.put('/productEdition/:id', multerUpload.single('imgProductos'), productController.edit);
