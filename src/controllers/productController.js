@@ -1,71 +1,121 @@
 const fs = require('fs');
 const path = require('path');
+const db = require('../database/models');
+const sequelize = db.sequelize;
 
 // ESTO SERIA EL GESTOR DEL MODELO
 
-const jsonDB = require('../model/jsonDatabase');
+// const jsonDB = require('../model/jsonDatabase');
 
 // Maneja todos los métodos para PRODUCTO, que lo pasa como parámetro
-const productModel = jsonDB('products');
+// const productModel = jsonDB('products');
 
 
 const productController = {
 
     productos: (req,res) => {
 
-        const productos = productModel.all();
+        //const productos = productModel.all();
+        db.Product.findAll()
+            .then(productos => {
+                res.render('./products/productos' ,{productos})
+            })
+                    .catch(error => res.send(error))
 
-        res.render('./products/productos' ,{productos})
     },
 
     viewCreate: (req,res)=>{
 
-        let listProduct = productModel.all();
-        res.render('./admin/admin', {listProduct})
+        // let listProduct = productModel.all();
+        db.Product.findAll({
+            include: ['categories']
+        })
+            .then(listProduct => {
+                res.render('./admin/admin', {listProduct})
+            })
+            .catch(error => res.send(error))
+
     },
 
     createProduct:(req,res)=>{
-        let value = {
-        id: 0,
+        db.Product.create({
         title: req.body.title,
         image: req.file.filename,
         description: req.body.description,
         price: Number(req.body.price),
         section: "productos",
         category: req.body.category
-        }
+        })
+        .then(()=>{
+            return res.redirect('/viewCreate')
+        })
+        .catch(error => res.send(error))
+        //Aplicar luego un res.render -tarea para mariano
+        // productModel.create(value);
 
-        productModel.create(value);
-        res.redirect('/viewCreate')
+        
     },
 
 
     productEdition : (req,res)=>{
-        let producto = productModel.find(req.params.id)
-        res.render( './admin/productEdition', {producto})
+        // let producto = productModel.find(req.params.id)
+        db.Product.findByPk(req.params.id)
+        .then((producto)=>
+        {res.render( './admin/productEdition', {producto})})
+        
     },
 
     edit : (req,res)=>{
-        let product = productModel.find(req.params.id);
+        //let product = productModel.find(req.params.id);
 
-		let aCambiar = {
-            id: req.params.id,
+		//let aCambiar = {
+            db.Product.update({
+            //id: req.params.id,
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
             category: req.body.category,
             image: req.file != null ? req.file.filename : product.image
-        };
-		productModel.update(aCambiar);
-		res.redirect('/viewCreate');
+        },
+        {
+            where:{
+            id:req.params.id
+            }
+        }
+        )
+        .then(()=>{
+            return 	res.redirect('/viewCreate');
+        })
+        .catch(error => res.send(error))
+
+		// productModel.update(aCambiar);
     },
 
     delete : (req,res)=>{
-        productModel.delete(req.params.id);
-		res.redirect('/viewCreate');
+        // productModel.delete(req.params.id);
+        Product
+        .destroy({where: {id: req.params.id}, force: true}) // force: true es para asegurar que se ejecute la acción
+        .then(()=>{
+            return res.redirect('/viewCreate')})
+        .catch(error => res.send(error)) 
+    },
+    category: (req, res) => {
+        // const productos = productModel.productsCategory(req.params.categoria);
+        // const detail = productModel.find(req.params.id);
+        db.Category.findAll()
+        .then(productos => {
+            res.render('./products/categories', {productos})
+        })
+                .catch(error => res.send(error))
+            
+ 
+    },
+    productDetail: (req, res) => {
+        const detail = productModel.find(req.params.id);
+        res.render('./products/productDetail', {detail});
     },
     
-    productDetail: (req, res) => {
+   /*  productDetail: (req, res) => {
         const detail = productModel.find(req.params.id);
 
         res.render('./products/productDetail', {detail});
@@ -93,7 +143,7 @@ const productController = {
     shoppingCart : (req,res)=>{
         res.render('./products/shopping-cart');
     }, 
-
+ */
 }
 
 
