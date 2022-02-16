@@ -1,26 +1,22 @@
-const fs = require('fs');
-const path = require('path');
+let db = require("../database/models");
 
-// ESTO SERIA EL GESTOR DEL MODELO
-const jsonDB = require('../model/menuDatabase');
-
-// Maneja todos los métodos para PRODUCTO, que lo pasa como parámetro
-const productModel = jsonDB('indexProducts');
-
-
-//**Rutas de acceso disponnible para el usuario  */
 const controllerIndex = {
     home: (req,res) =>{
-
-        const homeProducts = productModel.getIsSpecial();
-
-        res.render('./menu/index', {homeProducts});
+        db.Category.findAll({
+            where: {
+                isSpecial: 1
+            }
+        })
+        .then(homeProducts => {
+            res.render('./menu/index', {homeProducts});
+        })
     },
+
     menu: (req,res) =>{
-
-        const categorias = productModel.all();
-
-        res.render('./menu/menu', {categorias} )
+        db.Category.findAll()
+        .then(categorias => {
+            res.render('./menu/menu', {categorias} )
+        })
     }
 } 
 

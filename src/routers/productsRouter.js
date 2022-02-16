@@ -19,7 +19,7 @@ router.get('/products', productController.productos)
 router.get('/menu/:categoria', productController.category);
 
 //-- Detalle de un producto particular
- router.get('/menu/:categoria/:id', productController.productDetail);
+router.get('/menu/:categoria/:id', productController.productDetail);
 
 router.get('/product/:categoria/:id', productController.productDetail);
 
