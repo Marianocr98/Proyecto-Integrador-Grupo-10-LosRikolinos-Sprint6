@@ -43,12 +43,12 @@
             <% productos.forEach(element => { %>
             
             <article class="container-productos">
-                    <a href="product/<%=element.category%>/<%=element.id %>">
+                    <a href="products/<%=element.id %>">
                         <h4> <%= element.title  %> </h4>
                     </a> 
                     <div class="container-img-barrita">
                         <div class="container-img">
-                            <a href="product/<%=element.category%>/<%=element.id %>">
+                            <a href="products/<%=element.id %>">
                                 <img src= "/img/products/<%= element.image %> " alt="<%= element.imgDescription %> ">
                             </a>
                             <h2> $<%= element.price %>,00 </h2>

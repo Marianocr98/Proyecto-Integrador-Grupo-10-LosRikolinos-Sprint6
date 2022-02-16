@@ -25,16 +25,15 @@ const productController = {
     },
 
     viewCreate: (req,res)=>{
-
-        // let listProduct = productModel.all();
-        db.Product.findAll({
-            include: ['categories']
-        })
+        db.Product.findAll()
             .then(listProduct => {
-                res.render('./admin/admin', {listProduct})
+                db.Category.findAll()
+                .then( categories => {
+                    res.render('./admin/admin', {listProduct, categories})
+                })
+                .catch(error => res.send(error))
             })
-            .catch(error => res.send(error))
-
+            .catch(error => res.send(error));
     },
 
     createProduct:(req,res)=>{
@@ -47,30 +46,30 @@ const productController = {
         category: req.body.category
         })
         .then(()=>{
-            return res.redirect('/viewCreate')
+            res.redirect('/viewCreate')
         })
         .catch(error => res.send(error))
         //Aplicar luego un res.render -tarea para mariano
         // productModel.create(value);
-
-        
     },
 
 
     productEdition : (req,res)=>{
-        // let producto = productModel.find(req.params.id)
+
         db.Product.findByPk(req.params.id)
-        .then((producto)=>
-        {res.render( './admin/productEdition', {producto})})
-        
+        .then( producto => {
+            db.Category.findAll()
+                .then( categories => {
+                    res.render('./admin/productEdition', {producto, categories})
+                })
+                .catch(error => res.send(error))
+        })
+        .catch(error => res.send(error))
     },
 
     edit : (req,res)=>{
-        //let product = productModel.find(req.params.id);
-
-		//let aCambiar = {
+            let product = db.Product.findByPk(req.params.id);
             db.Product.update({
-            //id: req.params.id,
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
@@ -78,17 +77,11 @@ const productController = {
             image: req.file != null ? req.file.filename : product.image
         },
         {
-            where:{
-            id:req.params.id
-            }
-        }
-        )
-        .then(()=>{
-            return 	res.redirect('/viewCreate');
+            where: {id:req.params.id}
         })
-        .catch(error => res.send(error))
-
-		// productModel.update(aCambiar);
+        .then( () => {
+            res.redirect('/viewCreate');
+        })
     },
 
     delete : (req,res)=>{
@@ -102,32 +95,25 @@ const productController = {
     category: (req, res) => {
         // const productos = productModel.productsCategory(req.params.categoria);
         // const detail = productModel.find(req.params.id);
-        db.Category.findAll()
+        db.Product.findAll({
+            where: {
+                category_id: req.params.categoria
+            }
+        })
         .then(productos => {
             res.render('./products/categories', {productos})
         })
-                .catch(error => res.send(error))
+        .catch(error => res.send(error))
             
- 
     },
     productDetail: (req, res) => {
-        const detail = productModel.find(req.params.id);
-        res.render('./products/productDetail', {detail});
+        db.Product.findByPk(req.params.id)
+        .then( detail => {
+            res.render('./products/productDetail', {detail});
+        })
     },
     
-   /*  productDetail: (req, res) => {
-        const detail = productModel.find(req.params.id);
-
-        res.render('./products/productDetail', {detail});
-    },
-
-    category: (req, res) => {
-
-        const productos = productModel.productsCategory(req.params.categoria);
-        const detail = productModel.find(req.params.id);
-
-        res.render('./products/categories', {productos, detail})
-    },
+/* 
     search: (req, res) => {
 
         let busqueda = req.query.search.toLowerCase();

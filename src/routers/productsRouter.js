@@ -19,9 +19,9 @@ router.get('/products', productController.productos)
 router.get('/menu/:categoria', productController.category);
 
 //-- Detalle de un producto particular
-router.get('/menu/:categoria/:id', productController.productDetail);
+// router.get('/menu/:id', productController.productDetail);
 
-router.get('/product/:categoria/:id', productController.productDetail);
+router.get('/products/:id', productController.productDetail);
 
 // ----RUTA DE LA BARRA DEL BUSCADOR---- 
 //router.get('/search', productController.search);

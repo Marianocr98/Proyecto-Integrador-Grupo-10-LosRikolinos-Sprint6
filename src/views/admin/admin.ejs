@@ -41,13 +41,9 @@
                 <div class="categorias-real">
                     <label for="category">Categoria:</label>
                     <select name="category" id="category">
-                        <option value="hamburguer">Hamburguesas</option>
-                        <option value="pizza">Pizza</option>
-                        <option value="empanada">Empanadas</option>
-                        <option value="ravioles">Pastas</option>
-                        <option value="asado">Asado</option>
-                        <option value="postre">Postres</option>
-                        <option value="bebidas">Bebidas</option>
+                        <% categories.forEach(category => { %>
+                            <option value="<%= category.id %>"><%=category.name%></option>
+                        <% }) %>
                     </select>
                 </div>
                 
