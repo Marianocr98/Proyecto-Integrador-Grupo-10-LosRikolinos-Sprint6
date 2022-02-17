@@ -54,7 +54,7 @@ const userController = {
             full_name: req.body.fullName,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
-            avatar: req.filename,
+            avatar: req.file.filename,
             rol_id: 2
         })
         .then(function(user){
@@ -64,6 +64,9 @@ const userController = {
             req.session.avatar = user.avatar;
             req.session.rol = 2;
             req.session.save();
+
+            
+
         })
         res.redirect('/login')
     
@@ -74,30 +77,58 @@ const userController = {
         // console.log(req.session);
     },
     processLogin: (req, res) =>{
-        let userToLogin = User.findByField('email', req.body.email);
+        // let userToLogin = User.findByField('email', req.body.email);
 
 
-		if (userToLogin) {
-			//para saber su en mi base de datos tengo la misma contrase;a que la que el usuario ingreso correra todo bien 
-			let isOkPassword = bcrypt.compareSync(req.body.password, userToLogin.password)
-			if (isOkPassword) {
-				req.session.userLogged = userToLogin;
+		// if (userToLogin) {
+		// 	//para saber su en mi base de datos tengo la misma contrase;a que la que el usuario ingreso correra todo bien 
+		// 	let isOkPassword = bcrypt.compareSync(req.body.password, userToLogin.password)
+		// 	if (isOkPassword) {
+		// 		req.session.userLogged = userToLogin;
 
-                if(req.body.remember_user){
-                    res.cookie('userEmail', req.body.email, {maxAge:(1000 * 60) * 60})
+        //         if(req.body.remember_user){
+        //             res.cookie('userEmail', req.body.email, {maxAge:(1000 * 60) * 60})
+        //         }
+        //         return res.redirect('/profile')
+		// 	}
+		// }
+
+		// return res.render('./users/login' , {
+		// 	errors: {
+		// 		email: {
+		// 			msg: 'Las credenciales son inválidas!!!'
+		// 		}
+		// 	}	
+		// })
+       
+        db.User.findAll({
+            where: { 
+                email:req.body.email,
+            }
+        })   
+            .then( user =>{
+                let userToLogin = user.find(oneUser => oneUser.email === req.body.email)
+
+                if (userToLogin) 
+
+                
+                {
+                    if (userToLogin) {
+                            let isOkPassword = bcrypt.compareSync(req.body.password, userToLogin.password)
+                            if (isOkPassword) {
+                                req.session.userLogged = userToLogin;
+        
+                                if(req.body.remember_user){
+                                     res.cookie('userEmail', req.body.email, {maxAge:(1000 * 60) * 60})
+                                }
+                                return res.redirect('/profile')
+                            }
+                        }
+                        
                 }
-                return res.redirect('/profile')
-			}
-		}
 
-		return res.render('./users/login' , {
-			errors: {
-				email: {
-					msg: 'Las credenciales son inválidas!!!'
-				}
-			}	
-		})
-},
+            })
+        },
     profile: (req, res)=> {
         res.render('./users/profile',
         {user: req.session.userLogged});

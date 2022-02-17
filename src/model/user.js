@@ -16,9 +16,9 @@ const user = {
         let userFound = allUsers.find(oneUser => oneUser.id == id);
         return userFound
     },
-    findByField: function(field,text){
+    findByField: function(email){
         let allUsers = this.findAllUsers()
-        let userFound = allUsers.find(oneUser => oneUser[field] === text)
+        let userFound = allUsers.find(oneUser => oneUser.email === email)
         return userFound
     },
     generateId: function(){
