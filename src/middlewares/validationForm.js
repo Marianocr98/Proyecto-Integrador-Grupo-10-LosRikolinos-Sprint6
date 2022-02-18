@@ -5,7 +5,7 @@ const { body } = require('express-validator');
 const validations = [
     body('fullName')
 	.notEmpty().withMessage('Debe completar este campo').bail()
-	.isLength({ min : 10}).withMessage('El usuario debe tener al menos 10 caracteres'),
+	.isLength({ min : 3}).withMessage('El usuario debe tener al menos 3 caracteres'),
     
 	body('email')
 	.notEmpty().withMessage('Debe escribir un correo electrónico').bail()
@@ -42,4 +42,4 @@ const validations = [
 	})
 ]
 
-module.exports = validations
+module.exports = validations;

@@ -50,8 +50,8 @@ app.use('/', products);
 
 
 /*Server Funcionando*/
-app.listen(process.env.PORT || 3001, ()=>{
-    console.log('Servidor funcionando puerto 3001');
+app.listen(process.env.PORT || 3000, ()=>{
+    console.log('Servidor funcionando puerto 3000');
 });
 
 

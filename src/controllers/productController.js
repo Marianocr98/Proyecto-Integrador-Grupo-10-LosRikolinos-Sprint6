@@ -3,13 +3,6 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 
-// ESTO SERIA EL GESTOR DEL MODELO
-
-// const jsonDB = require('../model/jsonDatabase');
-
-// Maneja todos los métodos para PRODUCTO, que lo pasa como parámetro
-// const productModel = jsonDB('products');
-
 
 const productController = {
 
@@ -112,20 +105,26 @@ const productController = {
             res.render('./products/productDetail', {detail});
         })
     },
-    
-/* 
+    /*
     search: (req, res) => {
+        
+        let search = req.query.search.toLowerCase();
+        
+        db.Product.findAll({
+            where : {
+                name: { [Op.like] : '%' + search + '%' }
+            },
+            include: ["Categories"]
+        })
+        .then( products => {
 
-        let busqueda = req.query.search.toLowerCase();
-        // console.log("Estoy buscando:" + busqueda);
+            let filtrados = products.filter(e => e.title.toLowerCase().includes(busqueda) || e.category.name.toLowerCase().includes(busqueda));
 
-        let productos = productModel.readFile();
-
-        let filtrados = productos.filter(e => e.title.toLowerCase().includes(busqueda) || e.category.toLowerCase().includes(busqueda));
-
-        res.render('./menu/comidaReq', { filtrados: filtrados})
+            res.render('./menu/comidaReq', { filtrados})
+        })
     },
     
+
     shoppingCart : (req,res)=>{
         res.render('./products/shopping-cart');
     }, 

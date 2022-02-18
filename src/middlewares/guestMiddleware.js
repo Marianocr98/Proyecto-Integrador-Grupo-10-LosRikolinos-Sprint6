@@ -1,6 +1,6 @@
 function guestMiddleware(req, res, next){
     if(req.session.userLogged && req.session.userLogged.rol == "cliente"){
-       return res.redirect('/profile');
+        return res.redirect('/profile');
     }
     next();
 };

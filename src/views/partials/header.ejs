@@ -22,7 +22,7 @@
                             
                             <ul class="submenu">
 
-                                <%  if (locals.isLogged && locals.userLogged.rol == "admin") { %> 
+                                <%  if (locals.isLogged && locals.userLogged.rol_id == 1) { %> 
                                 <li><a href="/profile">Mi Perfil</a> </li> 
                                 <li><a href="/viewCreate">Crear Productos</a></li>
                                 <li><a href="/viewCreate/#ListadoDeProductos">Editar Productos</a></li>
