@@ -6,7 +6,7 @@ const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 // -----------EN PROCESO------------------------
-//router.get('/shopping-cart', productController.shoppingCart);
+router.get('/shopping-cart', productController.shoppingCart);
 
 // -----------EN PROCESO------------------------
 
@@ -19,12 +19,11 @@ router.get('/products', productController.productos)
 router.get('/menu/:categoria', productController.category);
 
 //-- Detalle de un producto particular
-// router.get('/menu/:id', productController.productDetail);
 
 router.get('/products/:id', productController.productDetail);
 
 // ----RUTA DE LA BARRA DEL BUSCADOR---- 
-//router.get('/search', productController.search);
+router.get('/search', productController.search);
 
 //  --------VISTA DEL FORMULARIO DE CREACION - ADMIN--------
 router.get('/viewCreate', guestMiddleware , authMiddleware ,productController.viewCreate)

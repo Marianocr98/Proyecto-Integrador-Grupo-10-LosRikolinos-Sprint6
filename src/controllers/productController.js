@@ -66,7 +66,7 @@ const productController = {
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            category: req.body.category,
+            category_id: req.body.category,
             image: req.file != null ? req.file.filename : product.image
         },
         {
@@ -78,16 +78,18 @@ const productController = {
     },
 
     delete : (req,res)=>{
-        // productModel.delete(req.params.id);
-        Product
-        .destroy({where: {id: req.params.id}, force: true}) // force: true es para asegurar que se ejecute la acción
-        .then(()=>{
-            return res.redirect('/viewCreate')})
+        db.Product.destroy({
+            where: { 
+                id: req.params.id
+            }
+        })
+        .then( () =>{
+            res.redirect('/viewCreate');
+        })
         .catch(error => res.send(error)) 
     },
+
     category: (req, res) => {
-        // const productos = productModel.productsCategory(req.params.categoria);
-        // const detail = productModel.find(req.params.id);
         db.Product.findAll({
             where: {
                 category_id: req.params.categoria
@@ -105,31 +107,24 @@ const productController = {
             res.render('./products/productDetail', {detail});
         })
     },
-    /*
+    
     search: (req, res) => {
         
-        let search = req.query.search.toLowerCase();
+        
+        let search = req.query.search.toLowerCase()
         
         db.Product.findAll({
-            where : {
-                name: { [Op.like] : '%' + search + '%' }
-            },
-            include: ["Categories"]
+            include: ['category']
         })
         .then( products => {
-
-            let filtrados = products.filter(e => e.title.toLowerCase().includes(busqueda) || e.category.name.toLowerCase().includes(busqueda));
-
+            let filtrados = products.filter(e => e.title.toLowerCase().includes(search) || e.category.name.toLowerCase().includes(search));
             res.render('./menu/comidaReq', { filtrados})
         })
     },
     
-
     shoppingCart : (req,res)=>{
         res.render('./products/shopping-cart');
-    }, 
- */
+    }
 }
-
 
 module.exports = productController;
