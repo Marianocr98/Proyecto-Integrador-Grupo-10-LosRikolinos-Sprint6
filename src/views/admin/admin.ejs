@@ -92,18 +92,18 @@
                 <% listProduct.forEach(element => { %>
                     <tr>
                         <td class="imagenTd">
-                            <a href="product/<%=element.category%>/<%=element.id %>" class="enlace">
+                            <a href="/products/<%=element.id %>" class="enlace">
                                 <img src="/img/products/<%= element.image %>" alt="<%= element.title %>" class="container-img">
                             </a>
                         </td>
                         <td class="containerProducts">
-                            <a href="product/<%=element.category%>/<%=element.id %> %> " class="enlace"><%= element.title %> 
+                            <a href="/products/<%=element.id %> %> " class="enlace"><%= element.title %> 
                                 <img src="/img/products/<%= element.image %>" alt="<%= element.title %>" class="container-img">
                             </a>
                             $<%= element.price %>
                         </td>
                         <td class="nombreTd">
-                            <a href="product/<%=element.category%>/<%=element.id %>" class="enlace">
+                            <a href="/products/<%=element.id %>" class="enlace">
                                 <%= element.title %>
                             </a>
                         </td>
