@@ -55,7 +55,31 @@ const userController = {
         });
     
     },
+    edit: (req, res)=> {
+        res.render('./admin/edit');
+    },
+    update: (req, res)=>{
+        
+        db.User.update({
+            full_name: req.body.fullName,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 10),
+            avatar: req.file.filename,
+        },{
+            where: { id: req.params.id}
+        })
+        .then( () => {
+                req.session.user = req.body.fullName;
+                req.session.email = req.body.email;
+                req.session.image = req.file.filename;
+                console.log(req.session)
+                res.redirect("/");
+        })
+        .catch( error => {
+            return res.send(error);
+        });
     
+    },
     processLogin: (req, res) =>{
 
         db.User.findOne(
@@ -72,7 +96,7 @@ const userController = {
                     if (isOkPassword) {
         
                         req.session.userLogged = user;
-        
+                        console.log(req.session.userLogged);
                         if (req.body.remember_user){
         
                             res.cookie('userEmail', req.body.email, {maxAge:(1000 * 60) * 60})
@@ -101,6 +125,7 @@ const userController = {
         .catch(error => res.send(error));
     },
 
+    
     profile: (req, res)=> {
         res.render('./users/profile',
         {user: req.session.userLogged});

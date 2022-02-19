@@ -27,6 +27,11 @@ router.post('/login', userController.processLogin);
 
 router.get('/profile', authMiddleware, userController.profile);
 
+router.get('/profile/edit/:id', userController.edit);
+
+router.put('/profile/edit/:id', multerUpFile.single('avatar'), userController.update);
+
+
 router.get('/logout/', userController.logout);
 
 
