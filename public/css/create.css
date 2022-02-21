@@ -40,6 +40,7 @@ body{
 
 .description-submit-products textarea{
     width: 100%;
+    border-radius: 20px;
 }
 
 .categorias-real {
@@ -52,9 +53,6 @@ body{
     width: 100%;
 }
 
-.categorias-real select {
-    margin: 0 auto;
-}
 
 .img-product input{
     display: flex;
@@ -63,8 +61,23 @@ body{
     width: 500px;
 }
 
+#name-product,#price ,#category, #avatar, #price,#file{
+    border-radius: 15px;
+    color: #fff;
+    border: 1px solid rgb(255, 255, 255);
+    background: rgb(0, 0, 0); 
+    padding: 5px;
+    height: 45px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+}
+#description{
+    border-radius: 15px;
+    width: 100%;
+    background: rgb(0, 0, 0); 
+    color: #fff;
 
-
+}
 .button-admin{
     display: flex;
     justify-content: space-around;

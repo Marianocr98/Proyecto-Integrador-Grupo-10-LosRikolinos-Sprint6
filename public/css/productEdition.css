@@ -31,7 +31,28 @@ h2{
     flex-direction: column;
     margin: 20px 0;
 }
+#name,#price ,#category, #avatar, #price,#file{
+    border-radius: 15px;
+    color: #fff;
+    border: 1px solid rgb(255, 255, 255);
+    background: rgb(0, 0, 0); 
+    padding: 5px;
+    height: 45px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+}
+#description{
+    border-radius: 15px;
+    width: 100%;
+    background: rgb(0, 0, 0); 
+    color: #fff;
 
+}
+.description-submit-products{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 .button-edit-submit{
     text-align: center;
 }
