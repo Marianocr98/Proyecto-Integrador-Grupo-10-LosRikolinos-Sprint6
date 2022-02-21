@@ -62,9 +62,9 @@
         <% homeProducts.forEach(element => { %>
             <div class="productos">
                     
-                    <a href="<%=  element.direction %> "> <h3><%= element.titulo %> </h3> 
-                        <img src="/img/products/<%= element.image %> " alt=" <%= element.description %> " >  </a>
-                    
+                    <a href="/menu/<%=  element.id %> "> <h3><%= element.name %> </h3> 
+                        <img src="/img/products/<%= element.image %> " alt=" <%= element.text_alternate %> " >  </a>
+                        <p><%= element.text_alternate %> </p>
             </div>
 
         <% }) %>

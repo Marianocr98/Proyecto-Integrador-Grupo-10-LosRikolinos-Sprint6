@@ -20,7 +20,6 @@ body {
     align-items: center;
     background: url("/img/products/fuegoHeader8.jpg") no-repeat;
     background-size: cover;
-    margin-bottom: 10px;
 }
 
 .contenedor-buscador-navbar{
@@ -139,9 +138,15 @@ animation: carrucel 14s infinite alternate linear;
 
 .productos{
     width: 220px;
-    margin: 15px 10px;
-    
+    border-radius: 20px;
+    margin: 10px 20px 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid blanchedalmond;
 }
+
 
 .productos img{
     
@@ -187,7 +192,6 @@ animation: carrucel 14s infinite alternate linear;
 }
 
 .ver-mas p {
-    margin: 40px 0px;
     text-align: center;
     font-size: 30px;
     color: red;
@@ -399,7 +403,7 @@ animation: carrucel 14s infinite alternate linear;
     }
 
     .container-title h2 {
-        margin-top: 40px;
+        margin-top: 100px;
         text-align: center;
         font-size: 40px;
         background: rgb(9, 9, 7);
@@ -410,7 +414,7 @@ animation: carrucel 14s infinite alternate linear;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        margin: 30px 0px 90px;
+        margin: 30px 0px 10px;
         justify-content: space-around;
     }
 
@@ -423,11 +427,10 @@ animation: carrucel 14s infinite alternate linear;
     }
 
     .productos img {
-        width: 230px;
-        height: 230px;
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
         margin-top: 20px;
-
     }
 
     .productos .PrecioProduc {
@@ -536,7 +539,9 @@ animation: carrucel 14s infinite alternate linear;
 
 
 
-
+    .productos {
+        width: 30%;
+    }
     .slider {
         width: 100%;
         margin: auto;
@@ -559,6 +564,12 @@ animation: carrucel 14s infinite alternate linear;
 
 /* Empieza el diseño responsivo 1024px */
 @media (min-width: 1024px) {
+    .productos{
+        width: 20%;
+    }
+    .top-header {
+        height: 150px;
+    }
     .contenedor-buscador-navbar {
         display: block;
 
@@ -634,9 +645,7 @@ animation: carrucel 14s infinite alternate linear;
         display: none;
     }
 
-    .navegacion{
-        margin: 30px auto;
-    }
+
     
     .navegacion ul{
         list-style: none;
@@ -712,7 +721,6 @@ animation: carrucel 14s infinite alternate linear;
     }
     .cart{
         position: absolute;
-        top:100px;
         right: 20px;
         z-index: 0;
 
@@ -799,7 +807,6 @@ animation: carrucel 14s infinite alternate linear;
 
 
     .ver-mas p {
-        margin: 40px 0px;
         text-align: center;
         font-size: 30px;
         color: red;
