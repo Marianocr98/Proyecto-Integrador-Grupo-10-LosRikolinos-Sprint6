@@ -36,14 +36,12 @@ const productController = {
         description: req.body.description,
         price: Number(req.body.price),
         section: "productos",
-        category: req.body.category
+        category_id: req.body.category
         })
         .then(()=>{
             res.redirect('/viewCreate')
         })
         .catch(error => res.send(error))
-        //Aplicar luego un res.render -tarea para mariano
-        // productModel.create(value);
     },
 
 
