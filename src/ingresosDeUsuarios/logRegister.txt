@@ -5,3 +5,5 @@ Se creo un registro al ingresar en mayra@rikolinos.com
 Se creo un registro al ingresar en andres@rikolinos.com
 Se creo un registro al ingresar en mariano@rikolinos.com
 Se creo un registro al ingresar en cliente123@gmail.com
+Se creo un registro al ingresar en albertocortez@gmail.com
+Se creo un registro al ingresar en albertocortez@gmail.com
