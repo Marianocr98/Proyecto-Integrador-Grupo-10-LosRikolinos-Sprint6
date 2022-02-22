@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Cargar nuevos productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Indie+Flower&family=Pacifico&family=Permanent+Marker&family=Roboto:ital,wght@1,100&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat&family=Indie+Flower&family=Pacifico&family=Permanent+Marker&family=Roboto:ital,wght@1,100&family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="../img/products/Logo-Rikolinos.png">
+</head>
+<body>
+
+    <!-- Inicio del Header -->
+
+    <%- include('../partials/header')  %> 
+
+    <main>
+
+        
+            
+           
+    
+            <div class="container-table">
+    
+                <h3 id = "ListadoDeProductos">Listado de Productos</h3>
+    
+                
+                <table class="table">
+                    <tr>
+                        <th class="imageTh">Imagen</th>
+                        <th class="productoTh">Productos</th>
+                        <th class="nombreTh">Nombre</th>
+                        <th class="priceTh">Precio</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                    <% listProduct.forEach(element => { %>
+                        <tr>
+                            <td class="imagenTd">
+                                <a href="/products/<%=element.id %>" class="enlace">
+                                    <img src="/img/products/<%= element.image %>" alt="<%= element.title %>" class="container-img">
+                                </a>
+                            </td>
+                            <td class="containerProducts">
+                                <a href="/products/<%=element.id %> %> " class="enlace"><%= element.title %> 
+                                    <img src="/img/products/<%= element.image %>" alt="<%= element.title %>" class="container-img">
+                                </a>
+                                $<%= element.price %>
+                            </td>
+                            <td class="nombreTd">
+                                <a href="/products/<%=element.id %>" class="enlace">
+                                    <%= element.title %>
+                                </a>
+                            </td>
+                            <td class="priceTd">
+                                $<%= element.price %> 
+                            </td>
+                            <td>
+                                <a href="/productEdition/<%= element.id %> ">
+                                    <button class="editar">Editar</button>
+                                </a>
+                            </td>
+                            <form action="/productDelete/<%=element.id%>?_method=DELETE" method="POST">
+                                <td>
+                                    <button class="eliminar">Eliminar</button>
+                                </td>
+                            </form>
+                        </tr>
+                        <% }) %>
+                </table>
+            </div>
+    
+    </main> 
+
+    <%- include('../partials/footer')  %> 
+
+    <!-- Fin del Footer -->
+
+</body>
+</html>

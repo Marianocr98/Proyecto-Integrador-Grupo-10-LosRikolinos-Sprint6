@@ -22,11 +22,17 @@ const productController = {
             .then(listProduct => {
                 db.Category.findAll()
                 .then( categories => {
-                    res.render('./admin/admin', {listProduct, categories})
+                    res.render('./admin/newProduct', {listProduct, categories})
                 })
                 .catch(error => res.send(error))
             })
             .catch(error => res.send(error));
+    },
+    registroProduct:(req,res) => {
+            db.Category.findAll()
+            .then( categories => {
+                res.render('./admin/admin', { categories})
+            }).catch(error => res.send(error))
     },
 
     createProduct:(req,res)=>{
