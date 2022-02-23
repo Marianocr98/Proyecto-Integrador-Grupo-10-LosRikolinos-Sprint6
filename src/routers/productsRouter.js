@@ -26,7 +26,6 @@ router.get('/products/:id', productController.productDetail);
 router.get('/search', productController.search);
 
 //  --------VISTA DEL FORMULARIO DE CREACION - ADMIN--------
-router.get('/viewCreate', guestMiddleware , authMiddleware ,productController.viewCreate)
 router.get('/createView', guestMiddleware , authMiddleware ,productController.registroProduct)
 
 // Acción de creación (a donde se envía el formulario)-check
@@ -42,8 +41,8 @@ router.put('/productEdition/:id', multerUpload.single('imgProductos'), productCo
 router.delete('/productDelete/:id', productController.delete);
 // -----------TERMINADOS------------------------
 
-//ver product
-router.get('/newProduct', productController.viewCreate)
+//ver list of products
+router.get('/listOfProducts', productController.list)
 
 
 module.exports = router;

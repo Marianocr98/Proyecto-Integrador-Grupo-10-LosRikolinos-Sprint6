@@ -17,7 +17,7 @@ const productController = {
 
     },
 
-    viewCreate: (req,res)=>{
+    list: (req,res)=>{
         db.Product.findAll()
             .then(listProduct => {
                 db.Category.findAll()
@@ -45,7 +45,7 @@ const productController = {
         category_id: req.body.category
         })
         .then(()=>{
-            res.redirect('/viewCreate')
+            res.redirect('/listOfProducts')
         })
         .catch(error => res.send(error))
     },
@@ -77,7 +77,7 @@ const productController = {
             where: {id:req.params.id}
         })
         .then( () => {
-            res.redirect('/viewCreate');
+            res.redirect('/listOfProducts');
         })
     },
 
@@ -88,7 +88,7 @@ const productController = {
             }
         })
         .then( () =>{
-            res.redirect('/viewCreate');
+            res.redirect('/listOfProducts');
         })
         .catch(error => res.send(error)) 
     },
