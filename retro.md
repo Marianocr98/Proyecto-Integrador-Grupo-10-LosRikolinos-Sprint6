@@ -7,11 +7,11 @@
 ### COMENZAR A HACER:
 
 
-- Hacer las ejercitaciones de clase para mas al dia.
+- Hacer las ejercitaciones de clase para estar al dia.
 
 - Ser mas independientes
 
--Usar mas el trello.
+- Usar mas el trello.
 
 ### HACER MÁS:
 
@@ -30,7 +30,7 @@
 
 
 
-### Trello:
+
 
 
 
