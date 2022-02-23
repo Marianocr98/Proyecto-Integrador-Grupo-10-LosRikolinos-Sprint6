@@ -30,8 +30,12 @@
             <div class="box-profile">
 				<h2 class="perfil">Bienvenid@ <%= user.full_name %> :) </h2>
 				<img class="perfil-profile" src="../../../img/avatars/<%=user.avatar%>">
-                <div class="emailUser"> <p class="emailUser"> <%=user.email  %> </p> </div>
-                <div><a href = "/profile/edit/<%= user.id %>">Editar usuario</a></div>
+                <div class="emailUser"> <p class="emailUser"> <%=user.email%> </p> </div>
+                <div class="button-editUser">
+                    <a href = "/profile/edit/<%= user.id %>">
+                        <button>Editar usuario</button>
+                    </a>
+                </div>
 				</div>
 			</div>
 		</div>

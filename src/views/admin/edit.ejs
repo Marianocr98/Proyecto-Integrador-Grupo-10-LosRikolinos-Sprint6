@@ -47,29 +47,17 @@
                 <label for="fullName"></label>
                 <input 
                 type="text" 
-                placeholder="Nombre y apellido" 
+                placeholder="Nuevo nombre de usuario" 
                 name="fullName" 
                 id="fullName"  
                 value="<%= locals.userLogged.full_name %>">
-                    <div class="text-danger">
-                    </div>
-                    
-            <!-- Poner email de usuario  -->
-                
-                <input 
-                type="email" 
-                placeholder="Correo electronico" 
-                name="email" 
-                id="email" 
-                value="<%= locals.userLogged.email %>">
-
                     <div class="text-danger">
                     </div>
                 
                 <!-- Poner contraseña de usuario  -->
                     <input 
                     type="password" 
-                    placeholder="Escribe tu contraseña" 
+                    placeholder="Nueva contraseña" 
                     name="password" 
                     id="password" 
                     value="<%= %>" >
@@ -80,7 +68,7 @@
                     <!-- Poner contraseña de usuario, confirmar  -->
                     <input 
                     type="password" 
-                    placeholder="Confirmar tu contraseña" 
+                    placeholder="Confirmar contraseña" 
                     name="confirm" 
                     id="password" 
                     value="<%= locals.oldData ? oldData.confirm : null %>" >
@@ -88,7 +76,7 @@
                         <div class="text-danger">
                         </div>
 
-                    <label for="avatar">Tu avatar:</label>
+                    <label for="avatar">Tu nuevo avatar:</label>
                     <input 
                     type="file" 
                     name="avatar" 
