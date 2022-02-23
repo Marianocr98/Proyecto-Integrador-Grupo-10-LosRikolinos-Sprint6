@@ -54,7 +54,7 @@
                         <% } %> 
                     </ul>
             </div>
-            <% if ( locals.userLogged.rol_id != 1) { %>
+            <% if (locals.isLogged && locals.userLogged.rol_id != 1) { %>
                 <div class="cart">
                     <a href="/shopping-cart"><i class="fas fa-shopping-cart"></i></a>
                 </div>
