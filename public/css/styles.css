@@ -100,10 +100,10 @@ body {
 }    
 
 .slider ul {
-display: flex;
-padding: 0;
-width: 400%;
-animation: carrucel 14s infinite alternate linear;  
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: carrucel 14s infinite alternate linear;  
 }
 
 @keyframes carrucel {
@@ -281,14 +281,6 @@ animation: carrucel 14s infinite alternate linear;
 /* Empieza el diseño responsivo 481px */
 
 @media (min-width: 481px) {
-
-
-    body {
-        background-color: #000;
-        color: #ebebeb;
-        
-    }
-
     .top-header {
         display: flex;
         flex-direction: row-reverse;
@@ -418,13 +410,8 @@ animation: carrucel 14s infinite alternate linear;
         justify-content: space-around;
     }
 
-    .productos {
-        width: 40%;
-        margin: 10px 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+
+    
 
     .productos img {
         width: 200px;
@@ -530,18 +517,7 @@ animation: carrucel 14s infinite alternate linear;
 
 @media (min-width: 769px) {
 
-
-
-    body {
-        background-color: #000;
-        color: #ebebeb;
-    }
-
-
-
-    .productos {
-        width: 30%;
-    }
+    
     .slider {
         width: 100%;
         margin: auto;
